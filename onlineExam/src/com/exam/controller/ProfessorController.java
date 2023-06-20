@@ -1,6 +1,9 @@
 package com.exam.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,5 +31,12 @@ public class ProfessorController {
 	public String createProfessor(@ModelAttribute("professorBo")ProfessorBo professorBo,Model model){
 		int id=professorService.createProfessor(professorBo);
 		return "createProfessor";
+	}
+	@RequestMapping(value="view",method=RequestMethod.GET)
+	public String retriveAllProfessor(Model model){
+		List<ProfessorBo> list=new ArrayList<ProfessorBo>();
+		list=professorService.retriveAllProfessor();
+		model.addAttribute("list", list);
+		return "viewProfessor";
 	}
 }
