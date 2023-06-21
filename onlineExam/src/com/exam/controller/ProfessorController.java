@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exam.bo.ProfessorBo;
 import com.exam.service.ProfessorService;
@@ -38,5 +40,24 @@ public class ProfessorController {
 		list=professorService.retriveAllProfessor();
 		model.addAttribute("list", list);
 		return "viewProfessor";
+	}
+	@RequestMapping(value="edit",method=RequestMethod.GET)
+	public String edit(@RequestParam("id")int id,Model model){
+		
+		professorBo=professorService.edit(id);
+		
+		model.addAttribute("professorBo", professorBo);
+		
+		return "editProfessor";
+	}
+	@RequestMapping(value="editProfessor",method=RequestMethod.POST)
+	public String editProfessor(@ModelAttribute("professorBo")ProfessorBo bo,Model model){
+		professorBo=professorService.editProfessor(bo);
+		return "editProfessor";
+	}
+	@RequestMapping(value="delete",method=RequestMethod.GET)
+	public String deleteProfessor(@RequestParam("id") int id,Model model){
+		int pId=professorService.deleteProfessor(id);
+		return "redirect:/view";
 	}
 }

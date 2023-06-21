@@ -10,8 +10,8 @@
 <title>Online Exam</title>
 </head>
 <body>
-<form:form action="createProfessor" modelAttribute="professorBo" method="post">
-
+<form:form action="editProfessor" modelAttribute="professorBo" method="post">
+<form:hidden path="id"/>
 <label>Name</label>
 <form:input path="name" placeholder="Enter name"/>
 
@@ -30,7 +30,7 @@
 <label>Mobile</label>
 <form:input path="mobile" placeholder="Enter Mobile Number"/>
 
-<form:button>Register</form:button>
+<form:button>Update</form:button>
 
 </form:form>
 </body>

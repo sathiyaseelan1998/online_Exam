@@ -10,4 +10,10 @@ public interface ProfessorDao {
 
 	List<ProfessorVo> retriveAllProfessor();
 
+	ProfessorVo edit(int id);
+
+	ProfessorVo editProfessor(ProfessorVo professorVo);
+
+	int deleteProfessor(int id);
+
 }

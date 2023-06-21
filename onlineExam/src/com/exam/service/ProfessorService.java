@@ -10,4 +10,10 @@ public interface ProfessorService {
 
 	List<ProfessorBo> retriveAllProfessor();
 
+	ProfessorBo edit(int id);
+
+	ProfessorBo editProfessor(ProfessorBo bo);
+
+	int deleteProfessor(int id);
+
 }
