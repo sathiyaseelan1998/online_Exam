@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Online Exam</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<a href="create">Register</a>
-	<a href="view">View</a>
-	<a href="login">Login</a>
+
 </body>
 </html>

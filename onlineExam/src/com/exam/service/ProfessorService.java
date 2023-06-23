@@ -2,6 +2,7 @@ package com.exam.service;
 
 import java.util.List;
 
+import com.exam.bo.LoginBo;
 import com.exam.bo.ProfessorBo;
 
 public interface ProfessorService {
@@ -15,5 +16,7 @@ public interface ProfessorService {
 	ProfessorBo editProfessor(ProfessorBo bo);
 
 	int deleteProfessor(int id);
+
+	LoginBo login(String email, String password);
 
 }

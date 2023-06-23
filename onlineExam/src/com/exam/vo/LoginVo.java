@@ -1,51 +1,42 @@
 package com.exam.vo;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
+import com.exam.bo.ProfessorBo;
 @Entity
-@Table(name="professor")
-public class ProfessorVo {
+@Table(name="login")
+public class LoginVo {
 	@Id
 	@GeneratedValue
-	@Column(name="id")
-	private int id;
-	
-	@Column(name="name")
-	private String name;
-	
-	@Column(name="email")
+	private int loginId;
 	private String email;
-	
-	@Column(name="confirmEmail")
 	private String confirmEmail;
-	
-	@Column(name="password")
 	private String password;
-	
-	@Column(name="confirmPassword")
 	private String confirmPassword;
-	
-	@Column(name="mobile")
-	private long mobile;
-	
-	@Column(name="userRole")
 	private String userRole;
 	
-	public int getId() {
-		return id;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="profId")
+	private ProfessorVo professorVo;
+	public ProfessorVo getProfessorVo() {
+		return professorVo;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setProfessorVo(ProfessorVo professorVo) {
+		this.professorVo = professorVo;
 	}
-	public String getName() {
-		return name;
+	public int getLoginId() {
+		return loginId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setLoginId(int loginId) {
+		this.loginId = loginId;
 	}
 	public String getEmail() {
 		return email;
@@ -68,20 +59,14 @@ public class ProfessorVo {
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-	public long getMobile() {
-		return mobile;
-	}
 	public String getUserRole() {
 		return userRole;
 	}
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
-	public void setMobile(long mobile) {
-		this.mobile = mobile;
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 	
 }

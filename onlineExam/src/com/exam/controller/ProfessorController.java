@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.exam.bo.LoginBo;
 import com.exam.bo.ProfessorBo;
 import com.exam.service.ProfessorService;
 
@@ -22,6 +23,7 @@ public class ProfessorController {
 	ProfessorService professorService;
 	
 	ProfessorBo professorBo=new ProfessorBo();
+	LoginBo loginBo=new LoginBo();
 	
 	@RequestMapping(value="create",method=RequestMethod.GET)
 	public String create(Model model){
@@ -59,5 +61,18 @@ public class ProfessorController {
 	public String deleteProfessor(@RequestParam("id") int id,Model model){
 		int pId=professorService.deleteProfessor(id);
 		return "redirect:/view";
+	}
+	@RequestMapping(value="login",method=RequestMethod.GET)
+	public String loginPage(Model model){
+		model.addAttribute("loginBo", loginBo);
+		return "login";
+		
+	}
+	@RequestMapping(value="login",method=RequestMethod.POST)
+	public String login(@ModelAttribute("loginBo")LoginBo bo,Model model){
+		loginBo=professorService.login(bo.getEmail(),bo.getPassword());
+		
+		return "main";
+		
 	}
 }

@@ -8,8 +8,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.exam.bo.LoginBo;
 import com.exam.bo.ProfessorBo;
 import com.exam.dao.ProfessorDao;
+import com.exam.vo.LoginVo;
 import com.exam.vo.ProfessorVo;
 
 
@@ -20,6 +22,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	ProfessorDao professorDao;
 	
 	ProfessorVo professorVo=new ProfessorVo();
+	LoginVo loginVo=new LoginVo();
 	@Override
 	public int createProfessor(ProfessorBo professorBo) {
 		// TODO Auto-generated method stub
@@ -29,7 +32,20 @@ public class ProfessorServiceImpl implements ProfessorService{
 		professorVo.setPassword(professorBo.getPassword());
 		professorVo.setConfirmPassword(professorBo.getConfirmPassword());
 		professorVo.setMobile(professorBo.getMobile());
+		professorVo.setUserRole("professor");
 		int id=professorDao.createProfessor(professorVo);
+		if(id>0){
+			LoginVo loginVo=new LoginVo();
+			loginVo.setEmail(professorBo.getEmail());
+			loginVo.setConfirmEmail(professorBo.getConfirmEmail());
+			loginVo.setPassword(professorBo.getPassword());
+			loginVo.setConfirmPassword(professorBo.getConfirmPassword());
+			loginVo.setUserRole("professor");
+			professorVo.setId(id);
+			loginVo.setProfessorVo(professorVo);
+			
+			int loginId=professorDao.createLogin(loginVo);
+		}
 		return id;
 	}
 	@Override
@@ -48,7 +64,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 				bo.setPassword(vo.getPassword());
 				bo.setConfirmPassword(vo.getConfirmPassword());
 				bo.setMobile(vo.getMobile());
-				
+				bo.setUserRole(vo.getUserRole());
 				listBo.add(bo);
 			}
 			
@@ -98,6 +114,16 @@ public class ProfessorServiceImpl implements ProfessorService{
 		// TODO Auto-generated method stub
 		int pId=professorDao.deleteProfessor(id);
 		return pId;
+	}
+	@Override
+	public LoginBo login(String email, String password) {
+		// TODO Auto-generated method stub
+		loginVo=professorDao.login(email,password);
+		LoginBo loginBo=new LoginBo();
+		loginBo.setEmail(loginVo.getEmail());
+		loginBo.setPassword(loginVo.getPassword());
+		loginBo.setUserRole(loginVo.getUserRole());
+		return loginBo;
 	}
 
 }

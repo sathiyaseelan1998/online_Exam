@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.exam.vo.LoginVo;
 import com.exam.vo.ProfessorVo;
 
 @Repository
@@ -19,6 +20,7 @@ public class ProfessorDaoImpl implements ProfessorDao {
 	SessionFactory sf;
 	
 	 ProfessorVo  professorVo=new  ProfessorVo();
+	 LoginVo loginVo=new LoginVo();
 	@Override
 	public int createProfessor(ProfessorVo professorVo) {
 		// TODO Auto-generated method stub
@@ -103,6 +105,34 @@ public class ProfessorDaoImpl implements ProfessorDao {
 			System.out.println(e);
 		}
 		return pId;
+	}
+	@Override
+	public int createLogin(LoginVo loginVo) {
+		// TODO Auto-generated method stub
+		int loginId=0;
+		try {
+			Session session=sf.getCurrentSession();
+			loginId=(int) session.save(loginVo);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		return loginId;
+	}
+	@Override
+	public LoginVo login(String email, String password) {
+		// TODO Auto-generated method stub
+		
+		try {
+			Session session=sf.getCurrentSession();
+			Criteria cr=session.createCriteria(LoginVo.class);
+			cr.add(Restrictions.eq("email", email));
+			cr.add(Restrictions.eq("password", password));
+			loginVo=(LoginVo) cr.uniqueResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return loginVo;
 	}
 
 }

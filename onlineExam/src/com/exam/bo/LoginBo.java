@@ -1,25 +1,16 @@
 package com.exam.bo;
 
-public class ProfessorBo {
-	private int id;
-	private String name;
+public class LoginBo {
+	private int loginId;
 	private String email;
 	private String confirmEmail;
 	private String password;
-	private String confirmPassword;
-	private long mobile;
 	private String userRole;
-	public int getId() {
-		return id;
+	public int getLoginId() {
+		return loginId;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	public void setLoginId(int loginId) {
+		this.loginId = loginId;
 	}
 	public String getEmail() {
 		return email;
@@ -42,19 +33,14 @@ public class ProfessorBo {
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-	public long getMobile() {
-		return mobile;
-	}
 	public String getUserRole() {
 		return userRole;
 	}
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
-	public void setMobile(long mobile) {
-		this.mobile = mobile;
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
+	private String confirmPassword;
 }
