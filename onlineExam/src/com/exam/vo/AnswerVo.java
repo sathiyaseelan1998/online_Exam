@@ -6,11 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="question")
+@Table(name="answer")
 public class AnswerVo {
 	@Id
 	@GeneratedValue
 	private int ansId;
+	
 	private String answer;
 	private int correctAns;
 	public int getAnsId() {

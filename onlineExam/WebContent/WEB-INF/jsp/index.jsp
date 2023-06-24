@@ -10,5 +10,6 @@
 	<a href="create">Register</a>
 	<a href="view">View</a>
 	<a href="login">Login</a>
+	<a href="createQuestionPage">Create Question</a>
 </body>
 </html>
