@@ -35,15 +35,41 @@ public class QuestionServiceImpl implements QuestionService {
 		String str[]=bo.getOptionList().toArray(new String[list.size()]);
 		bo.setOption(str);
 		List<AnswerVo> answerList=new ArrayList<>();
-		AnswerVo answerVo=new AnswerVo();
 		
 		for(String ans:list){
+			AnswerVo answerVo=new AnswerVo();
+			if(ans==str[0]){
+				answerVo.setCorrectAns(1);
+			}
 			answerVo.setAnswer(ans);
 			answerList.add(answerVo);
 		}
 		questionVo.setAnswerVo(answerList);
 		int id=questionDao.createQuestion(questionVo);
 		return 0;
+	}
+
+	@Override
+	public List<QuestionBo> viewQuestion() {
+		// TODO Auto-generated method stub
+		List<QuestionVo> listVo=new ArrayList<>();
+		List<QuestionBo> listBo=new ArrayList<>();
+		List<String> strBo=new ArrayList<>();
+		listVo=questionDao.viewQuestion();
+		for(QuestionVo vo:listVo){
+			QuestionBo bo=new QuestionBo();
+			bo.setQuestion(vo.getQuestion());
+			List<AnswerVo> answerList=vo.getAnswerVo();
+			for(int i=0;i<answerList.size();i++){
+			AnswerVo ans=new AnswerVo();
+			ans=answerList.get(i);
+			bo.setAnswer1(ans.getAnswer());
+			for(String ss:bo.getOption()){
+				strBo.add(ss);
+			}
+			}
+		}
+		return null;
 	}
 
 }

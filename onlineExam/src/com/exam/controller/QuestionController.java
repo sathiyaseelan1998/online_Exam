@@ -1,5 +1,8 @@
 package com.exam.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,13 @@ public class QuestionController {
 		int id=questionService.createQuestion(bo);
 		model.addAttribute("questionBo", questionBo);
 		return "createQuestion";
+	}
+	@RequestMapping(value="viewQuestion",method=RequestMethod.GET)
+	public String viewQuestionPage(Model model){
+		List<QuestionBo> queList=new ArrayList<QuestionBo>();
+		queList=questionService.viewQuestion();
+		model.addAttribute("queList", queList);
+		return "viewQuestion";
 	}
 
 

@@ -11,5 +11,6 @@
 	<a href="view">View</a>
 	<a href="login">Login</a>
 	<a href="createQuestionPage">Create Question</a>
+	<a href="viewQuestion">View Question</a>
 </body>
 </html>
