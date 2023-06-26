@@ -46,7 +46,7 @@ public class QuestionServiceImpl implements QuestionService {
 		}
 		questionVo.setAnswerVo(answerList);
 		int id=questionDao.createQuestion(questionVo);
-		return 0;
+		return id;
 	}
 
 	@Override
@@ -55,21 +55,34 @@ public class QuestionServiceImpl implements QuestionService {
 		List<QuestionVo> listVo=new ArrayList<>();
 		List<QuestionBo> listBo=new ArrayList<>();
 		List<String> strBo=new ArrayList<>();
+		String[] str;
 		listVo=questionDao.viewQuestion();
 		for(QuestionVo vo:listVo){
 			QuestionBo bo=new QuestionBo();
 			bo.setQuestion(vo.getQuestion());
 			List<AnswerVo> answerList=vo.getAnswerVo();
-			for(int i=0;i<answerList.size();i++){
+			//AnswerVo ans=new AnswerVo();
+		/*	for(int i=0;i<answerList.size();i++){
 			AnswerVo ans=new AnswerVo();
-			ans=answerList.get(i);
-			bo.setAnswer1(ans.getAnswer());
-			for(String ss:bo.getOption()){
-				strBo.add(ss);
+			//AnswerVo ans=new AnswerVo();
+			//ans=answerList.get(i).getAnswer();
+			str=new String[answerList.size()];
+			str[i]=answerList.get(i).getAnswer();
+			bo.setOption(str);
 			}
+			*/
+			for(AnswerVo aVo:answerList){
+				strBo.add(aVo.getAnswer());
+				bo.setOptionList(strBo);
 			}
+			bo.setOption(bo.getOptionList().toArray(new String[bo.getOptionList().size()]));
+			listBo.add(bo);
+			bo.setAnswer1(bo.getOption()[0]);
+			bo.setAnswer2(bo.getOption()[1]);
+			bo.setAnswer3(bo.getOption()[2]);
+			bo.setAnswer4(bo.getOption()[3]);
 		}
-		return null;
+		return listBo;
 	}
 
 }
