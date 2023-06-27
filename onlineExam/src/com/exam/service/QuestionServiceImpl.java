@@ -77,10 +77,6 @@ public class QuestionServiceImpl implements QuestionService {
 			}
 			bo.setOption(bo.getOptionList().toArray(new String[bo.getOptionList().size()]));
 			listBo.add(bo);
-			bo.setAnswer1(bo.getOption()[0]);
-			bo.setAnswer2(bo.getOption()[1]);
-			bo.setAnswer3(bo.getOption()[2]);
-			bo.setAnswer4(bo.getOption()[3]);
 		}
 		return listBo;
 	}
