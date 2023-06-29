@@ -35,6 +35,8 @@ public class QuestionDaoImpl implements QuestionDao {
 		try {
 			Session session=sf.getCurrentSession();
 			Criteria cr=session.createCriteria(QuestionVo.class);
+			//cr.setResultTransformer(cr.DISTINCT_ROOT_ENTITY);
+			cr.setResultTransformer(cr.DISTINCT_ROOT_ENTITY);
 			listVo=cr.list();
 			
 		} catch (Exception e) {

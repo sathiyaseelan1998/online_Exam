@@ -35,6 +35,17 @@ public class QuestionController {
 		List<QuestionBo> queList=new ArrayList<QuestionBo>();
 		queList=questionService.viewQuestion();
 		model.addAttribute("queList", queList);
+		for(QuestionBo bo:queList){
+			List<String> l=bo.getOptionList();
+			String[] zz=bo.getOption();
+				//bo.setAnswer1(s);
+				//model.addAttribute("ss", bo.getAnswer1());
+				//return "viewQuestion";
+				model.addAttribute("ss", bo.getOptionList());
+				model.addAttribute("zz", bo.getOption());
+			
+		}
+		//model.addAttribute("queList", bo.getOptionList());
 		return "viewQuestion";
 	}
 

@@ -9,13 +9,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach items="queList" var="q">
+	<c:forEach items="${queList}" var="q">
 	<p>${q.question}</p>
-	<form:radiobuttons path="answer1" name="answer" value="${q.answer1}"/>${q.answer1}
-	<form:radiobuttons path="answer2" name="answer" value="${q.answer2}"/>${q.answer2}
-	<form:radiobuttons path="answer3" name="answer" value="${q.answer3}"/>${q.answer3}
-	<form:radiobuttons path="answer4" name="answer" value="${q.answer4}"/>${q.answer4}
 	
+		<%-- <c:forEach items="${queList.options}" var="ql"> --%>
+		
+		<%-- </c:forEach> --%>
+	<%-- 	<c:forEach items="${ss}" var="ql">
+		<p>hi</p>
+		</c:forEach> --%>
+		<%-- <p>${zz[0]}</p>
+		<p>${zz[1]}</p>
+		<p>${zz[2]}</p>
+		<p>${zz[3]}</p> --%>
+		<c:forEach items="${q.optionList}" var="ql">
+		<p>hi</p>
+		</c:forEach>
+		
 	</c:forEach>
 </body>
 </html>
